@@ -7,6 +7,8 @@ import '../../../app/themes/colors.dart';
 import '../../../core/widgets/habit_card.dart';
 import '../../../core/widgets/common_widgets.dart';
 import '../controllers/home_controller.dart';
+import '../../statistics/views/stats_view.dart';
+import '../../profile/views/profile_view.dart';
 
 /// Main navigation view with bottom tabs
 class MainView extends StatefulWidget {
@@ -19,7 +21,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
-  final _pages = [const HomeView(), const StatsView(), const ProfileView()];
+  final _pages = const [HomeView(), StatsView(), ProfileView()];
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +181,6 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildProgressCard(BuildContext context) {
-    final theme = Theme.of(context);
     final progress = controller.todayProgress.value;
     final percentage = (progress * 100).toInt();
 
@@ -275,25 +276,5 @@ class HomeView extends GetView<HomeController> {
     if (progress >= 0.5) return 'Halfway done, you got this! 🔥';
     if (progress >= 0.25) return 'Good start! Keep building! 🌟';
     return 'Let\'s make today count! ✨';
-  }
-}
-
-/// Stats tab placeholder
-class StatsView extends StatelessWidget {
-  const StatsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Statistics - Coming Soon'));
-  }
-}
-
-/// Profile tab placeholder
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Profile - Coming Soon'));
   }
 }
